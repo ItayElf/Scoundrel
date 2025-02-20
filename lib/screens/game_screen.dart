@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:playing_cards/playing_cards.dart';
 import 'package:scoundrel/components/deck.dart';
 import 'package:scoundrel/components/game_footer.dart';
+import 'package:scoundrel/components/game_layout.dart';
 import 'package:scoundrel/components/room_area.dart';
 
 class GameScreen extends StatelessWidget {
@@ -9,49 +10,21 @@ class GameScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const numberOfCards = 50;
-    const cardHeight = 200;
-
-    return Material(
-      child: SafeArea(
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            SizedBox(
-              height:
-                  MediaQuery.of(context).size.height / 2 + 1.2 * numberOfCards,
-              width: cardHeight * playingCardAspectRatio,
-              child: Deck(numberOfCards: numberOfCards),
-            ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                RoomArea(
-                  roomCards: [
-                    PlayingCard(Suit.clubs, CardValue.ace),
-                    PlayingCard(Suit.diamonds, CardValue.four),
-                    PlayingCard(Suit.hearts, CardValue.nine),
-                    PlayingCard(Suit.spades, CardValue.seven),
-                  ],
-                ),
-                SizedBox(
-                  width: MediaQuery.of(context).size.width * (3 / 4),
-                  child: GameFooter(
-                    weapon: PlayingCard(Suit.diamonds, CardValue.seven),
-                    slainMonsters: [
-                      PlayingCard(Suit.clubs, CardValue.seven),
-                      PlayingCard(Suit.clubs, CardValue.seven),
-                      PlayingCard(Suit.clubs, CardValue.seven),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ],
-        ),
-      ),
+    return GameLayout(
+      currentHealth: 20,
+      cardsInDeck: 50,
+      weapon: PlayingCard(Suit.diamonds, CardValue.seven),
+      roomCards: [
+        PlayingCard(Suit.clubs, CardValue.ace),
+        PlayingCard(Suit.diamonds, CardValue.four),
+        PlayingCard(Suit.hearts, CardValue.nine),
+        PlayingCard(Suit.spades, CardValue.seven),
+      ],
+      slainMonsters: [
+        PlayingCard(Suit.clubs, CardValue.seven),
+        PlayingCard(Suit.clubs, CardValue.seven),
+        PlayingCard(Suit.clubs, CardValue.seven),
+      ],
     );
   }
 }

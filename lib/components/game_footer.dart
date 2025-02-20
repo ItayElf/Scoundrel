@@ -8,10 +8,12 @@ class GameFooter extends StatelessWidget {
     super.key,
     required this.weapon,
     required this.slainMonsters,
+    required this.currentHealth,
   });
 
   final PlayingCard? weapon;
   final List<PlayingCard> slainMonsters;
+  final int currentHealth;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +22,7 @@ class GameFooter extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Weapon(weapon: weapon, slainMonsters: slainMonsters),
-        Health(currentHealth: 15),
+        Health(currentHealth: currentHealth),
       ],
     );
   }
