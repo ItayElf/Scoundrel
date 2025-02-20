@@ -113,6 +113,12 @@ class _GameScreenState extends State<GameScreen> {
       roomCards: roomCards,
       slainMonsters: slainMonsters,
       onCardPlay: onCardPlay,
+      useWeapon: useWeapon,
+      onToggleUseWeapon: () {
+        setState(() {
+          useWeapon = !useWeapon;
+        });
+      },
     );
   }
 }

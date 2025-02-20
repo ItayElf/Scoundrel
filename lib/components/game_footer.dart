@@ -9,11 +9,15 @@ class GameFooter extends StatelessWidget {
     required this.weapon,
     required this.slainMonsters,
     required this.currentHealth,
+    required this.useWeapon,
+    required this.onToggleUseWeapon,
   });
 
   final PlayingCard? weapon;
   final List<PlayingCard> slainMonsters;
   final int currentHealth;
+  final bool useWeapon;
+  final void Function() onToggleUseWeapon;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +25,12 @@ class GameFooter extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Weapon(weapon: weapon, slainMonsters: slainMonsters),
+        Weapon(
+          weapon: weapon,
+          slainMonsters: slainMonsters,
+          useWeapon: useWeapon,
+          onToggleUseWeapon: onToggleUseWeapon,
+        ),
         Health(currentHealth: currentHealth),
       ],
     );

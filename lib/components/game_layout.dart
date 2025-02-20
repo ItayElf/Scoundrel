@@ -13,6 +13,8 @@ class GameLayout extends StatelessWidget {
     required this.slainMonsters,
     required this.currentHealth,
     required this.onCardPlay,
+    required this.useWeapon,
+    required this.onToggleUseWeapon,
   });
 
   final int cardsInDeck;
@@ -21,6 +23,8 @@ class GameLayout extends StatelessWidget {
   final List<PlayingCard> slainMonsters;
   final int currentHealth;
   final void Function(PlayingCard) onCardPlay;
+  final bool useWeapon;
+  final void Function() onToggleUseWeapon;
 
   static const cardHeight = 200;
 
@@ -49,6 +53,8 @@ class GameLayout extends StatelessWidget {
                     weapon: weapon,
                     slainMonsters: slainMonsters,
                     currentHealth: currentHealth,
+                    useWeapon: useWeapon,
+                    onToggleUseWeapon: onToggleUseWeapon,
                   ),
                 ),
               ],
