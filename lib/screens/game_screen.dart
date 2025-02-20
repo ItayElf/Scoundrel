@@ -25,6 +25,28 @@ class _GameScreenState extends State<GameScreen> {
     deckCards.removeRange(0, 4);
   }
 
+  void onCardPlay(PlayingCard card) {
+    if (card.suit == Suit.hearts) {
+      onHeartsPlay(card);
+    } else if (card.suit == Suit.diamonds) {
+      onWeaponPlay(card);
+    } else {
+      onMonsterPlay(card);
+    }
+  }
+
+  void onHeartsPlay(PlayingCard card) {
+    print("Heart");
+  }
+
+  void onWeaponPlay(PlayingCard card) {
+    print("Weapon");
+  }
+
+  void onMonsterPlay(PlayingCard card) {
+    print("Monster");
+  }
+
   @override
   Widget build(BuildContext context) {
     return GameLayout(
@@ -33,6 +55,7 @@ class _GameScreenState extends State<GameScreen> {
       weapon: weapon,
       roomCards: roomCards,
       slainMonsters: slainMonsters,
+      onCardPlay: onCardPlay,
     );
   }
 }

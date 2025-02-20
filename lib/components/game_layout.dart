@@ -12,6 +12,7 @@ class GameLayout extends StatelessWidget {
     required this.weapon,
     required this.slainMonsters,
     required this.currentHealth,
+    required this.onCardPlay,
   });
 
   final int cardsInDeck;
@@ -19,6 +20,7 @@ class GameLayout extends StatelessWidget {
   final PlayingCard? weapon;
   final List<PlayingCard> slainMonsters;
   final int currentHealth;
+  final void Function(PlayingCard) onCardPlay;
 
   static const cardHeight = 200;
 
@@ -40,7 +42,7 @@ class GameLayout extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                RoomArea(roomCards: roomCards),
+                RoomArea(roomCards: roomCards, onChoice: onCardPlay),
                 SizedBox(
                   width: MediaQuery.of(context).size.width * (3 / 4),
                   child: GameFooter(

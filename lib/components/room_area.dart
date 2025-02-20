@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:playing_cards/playing_cards.dart';
 
 class RoomArea extends StatelessWidget {
-  const RoomArea({super.key, required this.roomCards});
+  const RoomArea({super.key, required this.roomCards, required this.onChoice});
 
   final List<PlayingCard?> roomCards;
+  final void Function(PlayingCard) onChoice;
 
   static const cardHeight = 200.0;
 
@@ -22,7 +23,10 @@ class RoomArea extends StatelessWidget {
                         )
                         : SizedBox(
                           height: 200,
-                          child: PlayingCardView(card: c),
+                          child: InkWell(
+                            onTap: () => onChoice(c),
+                            child: PlayingCardView(card: c),
+                          ),
                         ),
               )
               .toList(),
