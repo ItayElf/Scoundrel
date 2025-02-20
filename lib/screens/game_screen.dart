@@ -19,6 +19,8 @@ class _GameScreenState extends State<GameScreen> {
   List<PlayingCard> slainMonsters = [];
   late List<PlayingCard?> roomCards;
 
+  bool didHeal = false;
+
   static const maxHealth = 20;
 
   @override
@@ -46,7 +48,10 @@ class _GameScreenState extends State<GameScreen> {
   }
 
   void onHeartsPlay(PlayingCard card) {
+    if (didHeal) return;
+
     currentHealth = min(currentHealth + getCardValue(card), maxHealth);
+    didHeal = true;
   }
 
   void onWeaponPlay(PlayingCard card) {
