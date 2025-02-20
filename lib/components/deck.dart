@@ -6,6 +6,8 @@ class Deck extends StatelessWidget {
 
   final int numberOfCards;
 
+  static const cardHeight = 200.0;
+
   @override
   Widget build(BuildContext context) {
     final shape = RoundedRectangleBorder(
@@ -18,7 +20,7 @@ class Deck extends StatelessWidget {
         return Positioned(
           top: (numberOfCards - index) * 1.2,
           child: SizedBox(
-            height: 200,
+            height: cardHeight,
             child: PlayingCardView(
               card: PlayingCard(Suit.joker, CardValue.joker_1),
               showBack: true,

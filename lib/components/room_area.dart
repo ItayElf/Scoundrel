@@ -6,6 +6,8 @@ class RoomArea extends StatelessWidget {
 
   final List<PlayingCard?> roomCards;
 
+  static const cardHeight = 200.0;
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -15,8 +17,8 @@ class RoomArea extends StatelessWidget {
                 (c) =>
                     c == null
                         ? SizedBox(
-                          height: 200,
-                          width: 200 * playingCardAspectRatio,
+                          height: cardHeight,
+                          width: cardHeight * playingCardAspectRatio,
                         )
                         : SizedBox(
                           height: 200,

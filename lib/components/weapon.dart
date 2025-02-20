@@ -8,6 +8,7 @@ class Weapon extends StatelessWidget {
   final List<PlayingCard> slainMonsters;
 
   static const cardHeight = 150.0;
+  static const monsterPadding = 30;
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +19,9 @@ class Weapon extends StatelessWidget {
     final cards = weapon == null ? [] : [weapon, ...slainMonsters];
 
     return SizedBox(
-      width: cardHeight * playingCardAspectRatio + 30 * slainMonsters.length,
+      width:
+          cardHeight * playingCardAspectRatio +
+          monsterPadding * slainMonsters.length,
       child: FlatCardFan(
         children:
             cards

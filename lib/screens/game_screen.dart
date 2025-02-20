@@ -9,6 +9,9 @@ class GameScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    const numberOfCards = 50;
+    const cardHeight = 200;
+
     return Material(
       child: SafeArea(
         child: Row(
@@ -16,9 +19,10 @@ class GameScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             SizedBox(
-              height: MediaQuery.of(context).size.height / 2 + 1.2 * 50,
-              width: 200 * playingCardAspectRatio,
-              child: Deck(numberOfCards: 50),
+              height:
+                  MediaQuery.of(context).size.height / 2 + 1.2 * numberOfCards,
+              width: cardHeight * playingCardAspectRatio,
+              child: Deck(numberOfCards: numberOfCards),
             ),
             Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
