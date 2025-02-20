@@ -26,6 +26,7 @@ class GameScreen extends StatelessWidget {
             ),
             Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 RoomArea(
                   roomCards: [
@@ -35,13 +36,16 @@ class GameScreen extends StatelessWidget {
                     PlayingCard(Suit.spades, CardValue.seven),
                   ],
                 ),
-                GameFooter(
-                  weapon: PlayingCard(Suit.diamonds, CardValue.seven),
-                  slainMonsters: [
-                    PlayingCard(Suit.clubs, CardValue.seven),
-                    PlayingCard(Suit.clubs, CardValue.seven),
-                    PlayingCard(Suit.clubs, CardValue.seven),
-                  ],
+                SizedBox(
+                  width: MediaQuery.of(context).size.width * (3 / 4),
+                  child: GameFooter(
+                    weapon: PlayingCard(Suit.diamonds, CardValue.seven),
+                    slainMonsters: [
+                      PlayingCard(Suit.clubs, CardValue.seven),
+                      PlayingCard(Suit.clubs, CardValue.seven),
+                      PlayingCard(Suit.clubs, CardValue.seven),
+                    ],
+                  ),
                 ),
               ],
             ),

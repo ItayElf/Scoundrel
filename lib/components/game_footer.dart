@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:playing_cards/playing_cards.dart';
+import 'package:scoundrel/components/health.dart';
 import 'package:scoundrel/components/weapon.dart';
 
 class GameFooter extends StatelessWidget {
@@ -15,7 +16,12 @@ class GameFooter extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      children: [Weapon(weapon: weapon, slainMonsters: slainMonsters)],
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Weapon(weapon: weapon, slainMonsters: slainMonsters),
+        Health(currentHealth: 15),
+      ],
     );
   }
 }
