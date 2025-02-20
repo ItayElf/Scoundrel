@@ -15,7 +15,7 @@ class _GameScreenState extends State<GameScreen> {
   PlayingCard? weapon;
   List<PlayingCard> deckCards = getBaseSet();
   List<PlayingCard> slainMonsters = [];
-  late List<PlayingCard> roomCards;
+  late List<PlayingCard?> roomCards;
 
   @override
   void initState() {
@@ -33,6 +33,12 @@ class _GameScreenState extends State<GameScreen> {
     } else {
       onMonsterPlay(card);
     }
+    final newRoomCards =
+        roomCards.map((c) => _cardsEqual(c, card) ? null : c).toList();
+
+    setState(() {
+      roomCards = newRoomCards;
+    });
   }
 
   void onHeartsPlay(PlayingCard card) {
@@ -46,6 +52,9 @@ class _GameScreenState extends State<GameScreen> {
   void onMonsterPlay(PlayingCard card) {
     print("Monster");
   }
+
+  bool _cardsEqual(PlayingCard? a, PlayingCard? b) =>
+      a?.suit == b?.suit && a?.value == b?.value;
 
   @override
   Widget build(BuildContext context) {
