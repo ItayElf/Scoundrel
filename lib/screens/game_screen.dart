@@ -55,7 +55,9 @@ class _GameScreenState extends State<GameScreen> {
   }
 
   void onWeaponPlay(PlayingCard card) {
-    print("Weapon");
+    // setState is called by caller
+    weapon = PlayingCard(card.suit, card.value);
+    slainMonsters.clear();
   }
 
   void onMonsterPlay(PlayingCard card) {
