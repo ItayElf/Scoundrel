@@ -18,6 +18,14 @@ class Weapon extends StatelessWidget {
 
     final cards = weapon == null ? [] : [weapon, ...slainMonsters];
 
+    if (weapon == null) {
+      return SizedBox(
+        height: cardHeight,
+        width: cardHeight * playingCardAspectRatio,
+        child: Placeholder(),
+      );
+    }
+
     return SizedBox(
       width:
           cardHeight * playingCardAspectRatio +
