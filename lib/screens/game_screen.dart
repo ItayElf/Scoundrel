@@ -1,30 +1,38 @@
 import 'package:flutter/material.dart';
 import 'package:playing_cards/playing_cards.dart';
-import 'package:scoundrel/components/deck.dart';
-import 'package:scoundrel/components/game_footer.dart';
 import 'package:scoundrel/components/game_layout.dart';
-import 'package:scoundrel/components/room_area.dart';
+import 'package:scoundrel/logic/cards.dart';
 
-class GameScreen extends StatelessWidget {
+class GameScreen extends StatefulWidget {
   const GameScreen({super.key});
+
+  @override
+  State<GameScreen> createState() => _GameScreenState();
+}
+
+class _GameScreenState extends State<GameScreen> {
+  int currentHealth = 20;
+  PlayingCard? weapon;
+  List<PlayingCard> deckCards = getBaseSet();
+  List<PlayingCard> slainMonsters = [];
+  late List<PlayingCard> roomCards;
+
+  @override
+  void initState() {
+    super.initState();
+    deckCards.shuffle();
+    roomCards = deckCards.sublist(0, 4);
+    deckCards.removeRange(0, 4);
+  }
 
   @override
   Widget build(BuildContext context) {
     return GameLayout(
-      currentHealth: 20,
-      cardsInDeck: 50,
-      weapon: PlayingCard(Suit.diamonds, CardValue.seven),
-      roomCards: [
-        PlayingCard(Suit.clubs, CardValue.ace),
-        PlayingCard(Suit.diamonds, CardValue.four),
-        PlayingCard(Suit.hearts, CardValue.nine),
-        PlayingCard(Suit.spades, CardValue.seven),
-      ],
-      slainMonsters: [
-        PlayingCard(Suit.clubs, CardValue.seven),
-        PlayingCard(Suit.clubs, CardValue.seven),
-        PlayingCard(Suit.clubs, CardValue.seven),
-      ],
+      currentHealth: currentHealth,
+      cardsInDeck: deckCards.length,
+      weapon: weapon,
+      roomCards: roomCards,
+      slainMonsters: slainMonsters,
     );
   }
 }
