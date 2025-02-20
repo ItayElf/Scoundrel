@@ -20,6 +20,7 @@ class _GameScreenState extends State<GameScreen> {
   late List<PlayingCard?> roomCards;
 
   bool didHeal = false;
+  bool useWeapon = false;
 
   static const maxHealth = 20;
 
@@ -66,10 +67,27 @@ class _GameScreenState extends State<GameScreen> {
     // setState is called by caller
     weapon = PlayingCard(card.suit, card.value);
     slainMonsters.clear();
+    useWeapon = true;
   }
 
   void onMonsterPlay(PlayingCard card) {
-    print("Monster");
+    if (weapon == null || !useWeapon) {
+      currentHealth = max(0, currentHealth - getCardValue(card));
+      return;
+    }
+
+    final minSlainMonster =
+        slainMonsters.isEmpty ? 100 : getCardValue(slainMonsters.last);
+    if (minSlainMonster <= getCardValue(card)) {
+      currentHealth = max(0, currentHealth - getCardValue(card));
+      return;
+    }
+
+    currentHealth = max(
+      0,
+      currentHealth - max(getCardValue(card) - getCardValue(weapon!), 0),
+    );
+    slainMonsters.add(PlayingCard(card.suit, card.value));
   }
 
   void onNewRoom() {
