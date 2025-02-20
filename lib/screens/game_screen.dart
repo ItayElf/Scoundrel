@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:playing_cards/playing_cards.dart';
 import 'package:scoundrel/components/game_layout.dart';
@@ -11,11 +13,13 @@ class GameScreen extends StatefulWidget {
 }
 
 class _GameScreenState extends State<GameScreen> {
-  int currentHealth = 20;
+  int currentHealth = maxHealth;
   PlayingCard? weapon;
   List<PlayingCard> deckCards = getBaseSet();
   List<PlayingCard> slainMonsters = [];
   late List<PlayingCard?> roomCards;
+
+  static const maxHealth = 20;
 
   @override
   void initState() {
@@ -42,7 +46,7 @@ class _GameScreenState extends State<GameScreen> {
   }
 
   void onHeartsPlay(PlayingCard card) {
-    print("Heart");
+    currentHealth = min(currentHealth + getCardValue(card), maxHealth);
   }
 
   void onWeaponPlay(PlayingCard card) {

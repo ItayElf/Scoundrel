@@ -37,3 +37,22 @@ List<PlayingCard> getBaseSet() {
 
   return cards;
 }
+
+int getCardValue(PlayingCard card) {
+  return {
+        CardValue.two: 2,
+        CardValue.three: 3,
+        CardValue.four: 4,
+        CardValue.five: 5,
+        CardValue.six: 6,
+        CardValue.seven: 7,
+        CardValue.eight: 8,
+        CardValue.nine: 9,
+        CardValue.ten: 10,
+        CardValue.jack: 11,
+        CardValue.queen: 12,
+        CardValue.king: 13,
+        CardValue.ace: 14,
+      }[card.value] ??
+      0;
+}
