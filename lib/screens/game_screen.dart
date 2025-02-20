@@ -39,8 +39,16 @@ class _GameScreenState extends State<GameScreen> {
     } else {
       onMonsterPlay(card);
     }
-    final newRoomCards =
+
+    List<PlayingCard?> newRoomCards =
         roomCards.map((c) => _cardsEqual(c, card) ? null : c).toList();
+
+    final notNullRoomCards = newRoomCards.where((c) => c != null).toList();
+
+    if (notNullRoomCards.length == 1) {
+      onNewRoom();
+      newRoomCards = [notNullRoomCards.first, ...drawNewRoom()];
+    }
 
     setState(() {
       roomCards = newRoomCards;
@@ -62,6 +70,17 @@ class _GameScreenState extends State<GameScreen> {
 
   void onMonsterPlay(PlayingCard card) {
     print("Monster");
+  }
+
+  void onNewRoom() {
+    didHeal = false;
+  }
+
+  List<PlayingCard> drawNewRoom() {
+    // setState is called by caller
+    final drawn = deckCards.sublist(0, 3);
+    deckCards.removeRange(0, 3);
+    return drawn;
   }
 
   bool _cardsEqual(PlayingCard? a, PlayingCard? b) =>
