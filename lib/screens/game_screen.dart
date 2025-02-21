@@ -19,6 +19,7 @@ class _GameScreenState extends State<GameScreen> {
   List<PlayingCard> deckCards = getBaseSet();
   List<PlayingCard> slainMonsters = [];
   late List<PlayingCard?> roomCards;
+  late int maxScore;
 
   bool didHeal = false;
   bool useWeapon = false;
@@ -32,6 +33,7 @@ class _GameScreenState extends State<GameScreen> {
     deckCards.shuffle();
     roomCards = deckCards.sublist(0, 4);
     deckCards.removeRange(0, 4);
+    maxScore = getMaxScore();
   }
 
   void onCardPlay(PlayingCard card) {
@@ -107,17 +109,18 @@ class _GameScreenState extends State<GameScreen> {
   bool _cardsEqual(PlayingCard? a, PlayingCard? b) =>
       a?.suit == b?.suit && a?.value == b?.value;
 
-  int getScore() {
-    isMonster(PlayingCard c) => [Suit.clubs, Suit.spades].contains(c.suit);
+  bool _isMonster(PlayingCard c) => [Suit.clubs, Suit.spades].contains(c.suit);
 
-    final maxScore = getBaseSet()
-        .where(isMonster)
-        .map(getCardValue)
-        .reduce((a, b) => a + b);
+  int getMaxScore() =>
+      getBaseSet().where(_isMonster).map(getCardValue).reduce((a, b) => a + b);
 
+  int getCurrentScore() {
     List<PlayingCard> currentMonsters = [
-      ...deckCards.where(isMonster),
-      ...roomCards.where((c) => c != null).cast<PlayingCard>().where(isMonster),
+      ...deckCards.where(_isMonster),
+      ...roomCards
+          .where((c) => c != null)
+          .cast<PlayingCard>()
+          .where(_isMonster),
     ];
 
     final leftScore = currentMonsters.map(getCardValue).reduce((a, b) => a + b);
@@ -137,7 +140,7 @@ class _GameScreenState extends State<GameScreen> {
   }
 
   void showDialogOnGameOver(BuildContext context) {
-    final score = getScore();
+    final score = getCurrentScore();
 
     onPressed() {
       SharedPreferences.getInstance().then((perfs) {
@@ -187,6 +190,8 @@ class _GameScreenState extends State<GameScreen> {
       },
       canRun: canRun && roomCards.where((c) => c != null).length == 4,
       onRun: onRun,
+      maxScore: maxScore,
+      currentScore: getCurrentScore(),
     );
   }
 }

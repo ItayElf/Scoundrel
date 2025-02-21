@@ -18,6 +18,8 @@ class GameLayout extends StatelessWidget {
     required this.onToggleUseWeapon,
     required this.canRun,
     required this.onRun,
+    required this.maxScore,
+    required this.currentScore,
   });
 
   final int cardsInDeck;
@@ -30,6 +32,8 @@ class GameLayout extends StatelessWidget {
   final void Function() onToggleUseWeapon;
   final bool canRun;
   final void Function() onRun;
+  final int maxScore;
+  final int currentScore;
 
   static const cardHeight = 150.0;
 
@@ -45,13 +49,28 @@ class GameLayout extends StatelessWidget {
               flex: 1,
               child: SizedBox(
                 height:
-                    MediaQuery.of(context).size.height / 2 + 1.2 * cardsInDeck,
+                    MediaQuery.of(context).size.height / 2 +
+                    1.2 * cardsInDeck +
+                    30,
                 width: cardHeight * playingCardAspectRatio,
-                child: Stack(
-                  alignment: Alignment(0, -0.5),
+                child: Column(
                   children: [
-                    Deck(numberOfCards: cardsInDeck),
-                    RunButton(canRun: canRun, onRun: onRun),
+                    Expanded(
+                      child: Stack(
+                        alignment: Alignment(0, -0.5),
+                        children: [
+                          Deck(numberOfCards: cardsInDeck),
+                          RunButton(canRun: canRun, onRun: onRun),
+                        ],
+                      ),
+                    ),
+                    FittedBox(
+                      child: Text(
+                        "Score:\n$currentScore / $maxScore",
+                        style: TextStyle(fontSize: 30),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
                   ],
                 ),
               ),

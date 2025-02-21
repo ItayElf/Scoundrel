@@ -40,6 +40,20 @@ class Weapon extends StatelessWidget {
       );
     }
 
+    final cardStack =
+        cards
+            .map(
+              (c) => SizedBox(
+                height: cardHeight,
+                child: PlayingCardView(
+                  card: c,
+                  elevation: 2,
+                  style: defaultCardStyle,
+                ),
+              ),
+            )
+            .toList();
+
     return Row(
       children: [
         IconButton(
@@ -52,21 +66,7 @@ class Weapon extends StatelessWidget {
           width:
               cardHeight * playingCardAspectRatio +
               monsterPadding * slainMonsters.length,
-          child: FlatCardFan(
-            children:
-                cards
-                    .map(
-                      (c) => SizedBox(
-                        height: cardHeight,
-                        child: PlayingCardView(
-                          card: c,
-                          elevation: 2,
-                          style: defaultCardStyle,
-                        ),
-                      ),
-                    )
-                    .toList(),
-          ),
+          child: FlatCardFan(children: cardStack),
         ),
       ],
     );
