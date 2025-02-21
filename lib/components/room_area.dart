@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:playing_cards/playing_cards.dart';
+import 'package:scoundrel/style/card_style.dart';
 
 class RoomArea extends StatelessWidget {
   const RoomArea({super.key, required this.roomCards, required this.onChoice});
@@ -26,7 +27,10 @@ class RoomArea extends StatelessWidget {
                           height: 200,
                           child: InkWell(
                             onTap: () => onChoice(c),
-                            child: PlayingCardView(card: c),
+                            child: PlayingCardView(
+                              card: c,
+                              style: defaultCardStyle,
+                            ),
                           ),
                         ),
               )

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:playing_cards/playing_cards.dart';
+import 'package:scoundrel/style/card_style.dart';
 
 class Deck extends StatelessWidget {
   const Deck({super.key, required this.numberOfCards});
@@ -26,6 +27,7 @@ class Deck extends StatelessWidget {
               showBack: true,
               elevation: 0,
               shape: shape,
+              style: defaultCardStyle,
             ),
           ),
         );

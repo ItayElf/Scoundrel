@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:playing_cards/playing_cards.dart';
+import 'package:scoundrel/style/card_style.dart';
 
 class Weapon extends StatelessWidget {
   const Weapon({
@@ -57,7 +58,11 @@ class Weapon extends StatelessWidget {
                     .map(
                       (c) => SizedBox(
                         height: cardHeight,
-                        child: PlayingCardView(card: c, elevation: 2),
+                        child: PlayingCardView(
+                          card: c,
+                          elevation: 2,
+                          style: defaultCardStyle,
+                        ),
                       ),
                     )
                     .toList(),
