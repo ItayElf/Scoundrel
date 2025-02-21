@@ -6,7 +6,7 @@ class Deck extends StatelessWidget {
 
   final int numberOfCards;
 
-  static const cardHeight = 200.0;
+  static const cardHeight = 150.0;
 
   @override
   Widget build(BuildContext context) {

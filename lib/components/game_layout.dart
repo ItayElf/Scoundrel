@@ -26,7 +26,7 @@ class GameLayout extends StatelessWidget {
   final bool useWeapon;
   final void Function() onToggleUseWeapon;
 
-  static const cardHeight = 200;
+  static const cardHeight = 150.0;
 
   @override
   Widget build(BuildContext context) {
@@ -36,28 +36,34 @@ class GameLayout extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            SizedBox(
-              height:
-                  MediaQuery.of(context).size.height / 2 + 1.2 * cardsInDeck,
-              width: cardHeight * playingCardAspectRatio,
-              child: Deck(numberOfCards: cardsInDeck),
+            Flexible(
+              flex: 1,
+              child: SizedBox(
+                height:
+                    MediaQuery.of(context).size.height / 2 + 1.2 * cardsInDeck,
+                width: cardHeight * playingCardAspectRatio,
+                child: Deck(numberOfCards: cardsInDeck),
+              ),
             ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                RoomArea(roomCards: roomCards, onChoice: onCardPlay),
-                SizedBox(
-                  width: MediaQuery.of(context).size.width * (3 / 4),
-                  child: GameFooter(
-                    weapon: weapon,
-                    slainMonsters: slainMonsters,
-                    currentHealth: currentHealth,
-                    useWeapon: useWeapon,
-                    onToggleUseWeapon: onToggleUseWeapon,
+            Flexible(
+              flex: 3,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  RoomArea(roomCards: roomCards, onChoice: onCardPlay),
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width * (3 / 4),
+                    child: GameFooter(
+                      weapon: weapon,
+                      slainMonsters: slainMonsters,
+                      currentHealth: currentHealth,
+                      useWeapon: useWeapon,
+                      onToggleUseWeapon: onToggleUseWeapon,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ],
         ),
