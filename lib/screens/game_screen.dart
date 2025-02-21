@@ -22,6 +22,7 @@ class _GameScreenState extends State<GameScreen> {
 
   bool didHeal = false;
   bool useWeapon = false;
+  bool canRun = true;
 
   static const maxHealth = 20;
 
@@ -123,8 +124,19 @@ class _GameScreenState extends State<GameScreen> {
     return maxScore - leftScore;
   }
 
+  void onRun() {}
+
   void showDialogOnGameOver(BuildContext context) {
     final score = getScore();
+
+    onPressed() {
+      SharedPreferences.getInstance().then((perfs) {
+        perfs.setInt("highScore", max(perfs.getInt("highScore") ?? 0, score));
+        if (context.mounted) {
+          Navigator.popUntil(context, (route) => route.isFirst);
+        }
+      });
+    }
 
     showDialog(
       context: context,
@@ -134,17 +146,7 @@ class _GameScreenState extends State<GameScreen> {
             content: Text("Score: $score", style: TextStyle(fontSize: 20)),
             actions: [
               TextButton(
-                onPressed: () {
-                  SharedPreferences.getInstance().then((perfs) {
-                    perfs.setInt(
-                      "highScore",
-                      max(perfs.getInt("highScore") ?? 0, score),
-                    );
-                    if (context.mounted) {
-                      Navigator.popUntil(context, (route) => route.isFirst);
-                    }
-                  });
-                },
+                onPressed: onPressed,
                 child: Text("OK", style: TextStyle(fontSize: 16)),
               ),
             ],
@@ -173,6 +175,8 @@ class _GameScreenState extends State<GameScreen> {
           useWeapon = !useWeapon;
         });
       },
+      canRun: canRun && roomCards.where((c) => c != null).length == 4,
+      onRun: onRun,
     );
   }
 }

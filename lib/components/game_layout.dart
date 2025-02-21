@@ -3,6 +3,7 @@ import 'package:playing_cards/playing_cards.dart';
 import 'package:scoundrel/components/deck.dart';
 import 'package:scoundrel/components/game_footer.dart';
 import 'package:scoundrel/components/room_area.dart';
+import 'package:scoundrel/components/run_button.dart';
 
 class GameLayout extends StatelessWidget {
   const GameLayout({
@@ -15,6 +16,8 @@ class GameLayout extends StatelessWidget {
     required this.onCardPlay,
     required this.useWeapon,
     required this.onToggleUseWeapon,
+    required this.canRun,
+    required this.onRun,
   });
 
   final int cardsInDeck;
@@ -25,6 +28,8 @@ class GameLayout extends StatelessWidget {
   final void Function(PlayingCard) onCardPlay;
   final bool useWeapon;
   final void Function() onToggleUseWeapon;
+  final bool canRun;
+  final void Function() onRun;
 
   static const cardHeight = 150.0;
 
@@ -42,7 +47,13 @@ class GameLayout extends StatelessWidget {
                 height:
                     MediaQuery.of(context).size.height / 2 + 1.2 * cardsInDeck,
                 width: cardHeight * playingCardAspectRatio,
-                child: Deck(numberOfCards: cardsInDeck),
+                child: Stack(
+                  alignment: Alignment(0, -0.5),
+                  children: [
+                    Deck(numberOfCards: cardsInDeck),
+                    RunButton(canRun: canRun, onRun: onRun),
+                  ],
+                ),
               ),
             ),
             Flexible(
