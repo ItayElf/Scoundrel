@@ -5,6 +5,9 @@ import 'package:scoundrel/screens/home_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  GoogleFonts.config.allowRuntimeFetching = true;
+
   await SystemChrome.setPreferredOrientations([
     DeviceOrientation.landscapeLeft,
     DeviceOrientation.landscapeRight,
