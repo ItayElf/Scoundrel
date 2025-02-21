@@ -94,6 +94,7 @@ class _GameScreenState extends State<GameScreen> {
 
   void onNewRoom() {
     didHeal = false;
+    canRun = true;
   }
 
   List<PlayingCard> drawNewRoom() {
@@ -124,7 +125,16 @@ class _GameScreenState extends State<GameScreen> {
     return maxScore - leftScore;
   }
 
-  void onRun() {}
+  void onRun() {
+    canRun = false;
+    didHeal = false;
+
+    deckCards.addAll(roomCards.cast());
+    setState(() {
+      roomCards = deckCards.sublist(0, 4);
+      deckCards.removeRange(0, 4);
+    });
+  }
 
   void showDialogOnGameOver(BuildContext context) {
     final score = getScore();
