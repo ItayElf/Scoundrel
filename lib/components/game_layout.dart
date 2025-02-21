@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:playing_cards/playing_cards.dart';
-import 'package:scoundrel/components/deck.dart';
 import 'package:scoundrel/components/game_footer.dart';
+import 'package:scoundrel/components/left_pane.dart';
 import 'package:scoundrel/components/room_area.dart';
-import 'package:scoundrel/components/run_button.dart';
 
 class GameLayout extends StatelessWidget {
   const GameLayout({
@@ -47,32 +46,13 @@ class GameLayout extends StatelessWidget {
           children: [
             Flexible(
               flex: 1,
-              child: SizedBox(
-                height:
-                    MediaQuery.of(context).size.height / 2 +
-                    1.2 * cardsInDeck +
-                    30,
-                width: cardHeight * playingCardAspectRatio,
-                child: Column(
-                  children: [
-                    Expanded(
-                      child: Stack(
-                        alignment: Alignment(0, -0.5),
-                        children: [
-                          Deck(numberOfCards: cardsInDeck),
-                          RunButton(canRun: canRun, onRun: onRun),
-                        ],
-                      ),
-                    ),
-                    FittedBox(
-                      child: Text(
-                        "Score:\n$currentScore / $maxScore",
-                        style: TextStyle(fontSize: 30),
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                  ],
-                ),
+              child: LeftPane(
+                cardsInDeck: cardsInDeck,
+                cardHeight: cardHeight,
+                canRun: canRun,
+                onRun: onRun,
+                currentScore: currentScore,
+                maxScore: maxScore,
               ),
             ),
             Flexible(
