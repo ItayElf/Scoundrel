@@ -104,8 +104,32 @@ class _GameScreenState extends State<GameScreen> {
   bool _cardsEqual(PlayingCard? a, PlayingCard? b) =>
       a?.suit == b?.suit && a?.value == b?.value;
 
+  void showDialogOnGameOver(BuildContext context) {
+    showDialog(
+      context: context,
+      builder:
+          (context) => AlertDialog(
+            title: Text("You died!"),
+            content: Text("Score: 500"),
+            actions: [
+              TextButton(
+                onPressed:
+                    () => Navigator.popUntil(context, (route) => route.isFirst),
+                child: Text("OK"),
+              ),
+            ],
+          ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
+    if (currentHealth == 0) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        showDialogOnGameOver(context);
+      });
+    }
+
     return GameLayout(
       currentHealth: currentHealth,
       cardsInDeck: deckCards.length,
