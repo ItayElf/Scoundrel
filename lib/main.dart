@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show DeviceOrientation, SystemChrome;
+import 'package:google_fonts/google_fonts.dart';
 import 'package:scoundrel/screens/home_screen.dart';
 
 void main() async {
@@ -16,10 +17,14 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final baseTheme = ThemeData(
+      colorScheme: ColorScheme.fromSeed(seedColor: Colors.red),
+    );
+
     return MaterialApp(
       title: 'Scoundrel',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.red),
+      theme: baseTheme.copyWith(
+        textTheme: GoogleFonts.grenzeGotischTextTheme(),
       ),
       debugShowCheckedModeBanner: false,
       home: const HomeScreen(),

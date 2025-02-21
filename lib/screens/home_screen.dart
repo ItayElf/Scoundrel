@@ -25,6 +25,8 @@ class HomeScreen extends StatelessWidget {
                   child: Text("Explore!", style: TextStyle(fontSize: 36)),
                 ),
               ),
+              SizedBox(height: 24),
+              Text("High score: 148", style: TextStyle(fontSize: 24)),
             ],
           ),
         ),
