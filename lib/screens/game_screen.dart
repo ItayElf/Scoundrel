@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:playing_cards/playing_cards.dart';
 import 'package:scoundrel/components/game_layout.dart';
 import 'package:scoundrel/logic/cards.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class GameScreen extends StatefulWidget {
   const GameScreen({super.key});
@@ -123,19 +124,27 @@ class _GameScreenState extends State<GameScreen> {
   }
 
   void showDialogOnGameOver(BuildContext context) {
+    final score = getScore();
+
     showDialog(
       context: context,
       builder:
           (context) => AlertDialog(
             title: Text("You Died!"),
-            content: Text(
-              "Score: ${getScore()}",
-              style: TextStyle(fontSize: 20),
-            ),
+            content: Text("Score: $score", style: TextStyle(fontSize: 20)),
             actions: [
               TextButton(
-                onPressed:
-                    () => Navigator.popUntil(context, (route) => route.isFirst),
+                onPressed: () {
+                  SharedPreferences.getInstance().then((perfs) {
+                    perfs.setInt(
+                      "highScore",
+                      max(perfs.getInt("highScore") ?? 0, score),
+                    );
+                    if (context.mounted) {
+                      Navigator.popUntil(context, (route) => route.isFirst);
+                    }
+                  });
+                },
                 child: Text("OK", style: TextStyle(fontSize: 16)),
               ),
             ],
