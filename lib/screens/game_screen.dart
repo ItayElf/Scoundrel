@@ -104,18 +104,39 @@ class _GameScreenState extends State<GameScreen> {
   bool _cardsEqual(PlayingCard? a, PlayingCard? b) =>
       a?.suit == b?.suit && a?.value == b?.value;
 
+  int getScore() {
+    isMonster(PlayingCard c) => [Suit.clubs, Suit.spades].contains(c.suit);
+
+    final maxScore = getBaseSet()
+        .where(isMonster)
+        .map(getCardValue)
+        .reduce((a, b) => a + b);
+
+    List<PlayingCard> currentMonsters = [
+      ...deckCards.where(isMonster),
+      ...roomCards.where((c) => c != null).cast<PlayingCard>().where(isMonster),
+    ];
+
+    final leftScore = currentMonsters.map(getCardValue).reduce((a, b) => a + b);
+
+    return maxScore - leftScore;
+  }
+
   void showDialogOnGameOver(BuildContext context) {
     showDialog(
       context: context,
       builder:
           (context) => AlertDialog(
-            title: Text("You died!"),
-            content: Text("Score: 500"),
+            title: Text("You Died!"),
+            content: Text(
+              "Score: ${getScore()}",
+              style: TextStyle(fontSize: 20),
+            ),
             actions: [
               TextButton(
                 onPressed:
                     () => Navigator.popUntil(context, (route) => route.isFirst),
-                child: Text("OK"),
+                child: Text("OK", style: TextStyle(fontSize: 16)),
               ),
             ],
           ),
