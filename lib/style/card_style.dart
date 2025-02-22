@@ -6,31 +6,54 @@ final defaultCardStyle = PlayingCardViewStyle(
   suitStyles: {
     Suit.spades: SuitStyle(
       cardContentBuilders: {
-        CardValue.two: (context) => Image.asset("assets/monsters/kobold.jpg"),
+        CardValue.two:
+            (context) =>
+                Image.asset("assets/monsters/kobold.jpg", fit: BoxFit.cover),
         CardValue.three:
-            (context) => Image.asset("assets/monsters/skeleton.jpg"),
+            (context) =>
+                Image.asset("assets/monsters/skeleton.jpg", fit: BoxFit.cover),
         CardValue.four:
-            (context) => Image.asset("assets/monsters/hell hound.webp"),
-        CardValue.five: (context) => Image.asset("assets/monsters/ghost.webp"),
+            (context) => Image.asset(
+              "assets/monsters/hell hound.webp",
+              fit: BoxFit.cover,
+            ),
+        CardValue.five:
+            (context) =>
+                Image.asset("assets/monsters/ghost.webp", fit: BoxFit.cover),
         CardValue.six:
-            (context) => Image.asset("assets/monsters/peagasus.webp"),
-        CardValue.seven: (context) => Image.asset("assets/monsters/hag.webp"),
+            (context) =>
+                Image.asset("assets/monsters/peagasus.webp", fit: BoxFit.cover),
+        CardValue.seven:
+            (context) =>
+                Image.asset("assets/monsters/hag.webp", fit: BoxFit.cover),
         CardValue.eight:
-            (context) => Image.asset("assets/monsters/minotaur.webp"),
+            (context) =>
+                Image.asset("assets/monsters/minotaur.webp", fit: BoxFit.cover),
       },
     ),
     Suit.clubs: SuitStyle(
       cardContentBuilders: {
-        CardValue.two: (context) => Image.asset("assets/monsters/rat.jpg"),
+        CardValue.two:
+            (context) =>
+                Image.asset("assets/monsters/rat.jpg", fit: BoxFit.cover),
         CardValue.three:
-            (context) => Image.asset("assets/monsters/goblin.webp"),
-        CardValue.four: (context) => Image.asset("assets/monsters/zombie.webp"),
+            (context) =>
+                Image.asset("assets/monsters/goblin.webp", fit: BoxFit.cover),
+        CardValue.four:
+            (context) =>
+                Image.asset("assets/monsters/zombie.webp", fit: BoxFit.cover),
         CardValue.five:
-            (context) => Image.asset("assets/monsters/werewolf.webp"),
-        CardValue.six: (context) => Image.asset("assets/monsters/orc.webp"),
-        CardValue.seven: (context) => Image.asset("assets/monsters/ghoul.jpg"),
+            (context) =>
+                Image.asset("assets/monsters/werewolf.webp", fit: BoxFit.cover),
+        CardValue.six:
+            (context) =>
+                Image.asset("assets/monsters/orc.webp", fit: BoxFit.cover),
+        CardValue.seven:
+            (context) =>
+                Image.asset("assets/monsters/ghoul.jpg", fit: BoxFit.cover),
         CardValue.eight:
-            (context) => Image.asset("assets/monsters/yuan ti.jpg"),
+            (context) =>
+                Image.asset("assets/monsters/yuan ti.jpg", fit: BoxFit.cover),
       },
     ),
     Suit.hearts: SuitStyle(),
