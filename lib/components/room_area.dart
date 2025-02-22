@@ -22,6 +22,18 @@ class RoomArea extends StatelessWidget {
                         ? SizedBox(
                           height: cardHeight,
                           width: cardHeight * playingCardAspectRatio,
+                          child: Card(
+                            color: Colors.transparent,
+                            shape: RoundedRectangleBorder(
+                              side: BorderSide(
+                                color: Colors.white, // Border color
+                                width: 2, // Border width
+                              ),
+                              borderRadius: BorderRadius.circular(
+                                10,
+                              ), // Optional rounded corners
+                            ),
+                          ),
                         )
                         : SizedBox(
                           height: 200,
