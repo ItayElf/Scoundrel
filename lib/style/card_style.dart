@@ -29,6 +29,26 @@ final defaultCardStyle = PlayingCardViewStyle(
         CardValue.eight:
             (context) =>
                 Image.asset("assets/monsters/minotaur.webp", fit: BoxFit.cover),
+        CardValue.nine:
+            (context) =>
+                Image.asset("assets/monsters/wyvern.webp", fit: BoxFit.cover),
+        CardValue.ten:
+            (context) =>
+                Image.asset("assets/monsters/medusa.webp", fit: BoxFit.cover),
+        CardValue.jack:
+            (context) =>
+                Image.asset("assets/monsters/mage.webp", fit: BoxFit.cover),
+        CardValue.queen:
+            (context) =>
+                Image.asset("assets/monsters/sinister.webp", fit: BoxFit.cover),
+        CardValue.king:
+            (context) => Image.asset(
+              "assets/monsters/red dragon.webp",
+              fit: BoxFit.cover,
+            ),
+        CardValue.ace:
+            (context) =>
+                Image.asset("assets/monsters/devil.webp", fit: BoxFit.cover),
       },
     ),
     Suit.clubs: SuitStyle(
@@ -54,6 +74,28 @@ final defaultCardStyle = PlayingCardViewStyle(
         CardValue.eight:
             (context) =>
                 Image.asset("assets/monsters/yuan ti.jpg", fit: BoxFit.cover),
+        CardValue.nine:
+            (context) =>
+                Image.asset("assets/monsters/troll.jpg", fit: BoxFit.cover),
+        CardValue.ten:
+            (context) =>
+                Image.asset("assets/monsters/beholder.jpg", fit: BoxFit.cover),
+        CardValue.jack:
+            (context) =>
+                Image.asset("assets/monsters/vampire.jpg", fit: BoxFit.cover),
+        CardValue.queen:
+            (context) => Image.asset(
+              "assets/monsters/skeleton king.jpg",
+              fit: BoxFit.cover,
+            ),
+        CardValue.king:
+            (context) =>
+                Image.asset("assets/monsters/demon.jpg", fit: BoxFit.cover),
+        CardValue.ace:
+            (context) => Image.asset(
+              "assets/monsters/death lord.jpg",
+              fit: BoxFit.cover,
+            ),
       },
     ),
     Suit.hearts: SuitStyle(),
