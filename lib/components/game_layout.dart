@@ -39,43 +39,51 @@ class GameLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      child: SafeArea(
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Flexible(
-              flex: 1,
-              child: LeftPane(
-                cardsInDeck: cardsInDeck,
-                cardHeight: cardHeight,
-                canRun: canRun,
-                onRun: onRun,
-                currentScore: currentScore,
-                maxScore: maxScore,
+      child: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("assets/background.jpg"),
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: SafeArea(
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Flexible(
+                flex: 1,
+                child: LeftPane(
+                  cardsInDeck: cardsInDeck,
+                  cardHeight: cardHeight,
+                  canRun: canRun,
+                  onRun: onRun,
+                  currentScore: currentScore,
+                  maxScore: maxScore,
+                ),
               ),
-            ),
-            Flexible(
-              flex: 3,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  RoomArea(roomCards: roomCards, onChoice: onCardPlay),
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width * (3 / 4),
-                    child: GameFooter(
-                      weapon: weapon,
-                      slainMonsters: slainMonsters,
-                      currentHealth: currentHealth,
-                      useWeapon: useWeapon,
-                      onToggleUseWeapon: onToggleUseWeapon,
+              Flexible(
+                flex: 3,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    RoomArea(roomCards: roomCards, onChoice: onCardPlay),
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width * (3 / 4),
+                      child: GameFooter(
+                        weapon: weapon,
+                        slainMonsters: slainMonsters,
+                        currentHealth: currentHealth,
+                        useWeapon: useWeapon,
+                        onToggleUseWeapon: onToggleUseWeapon,
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

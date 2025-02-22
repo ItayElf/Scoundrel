@@ -29,31 +29,45 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Material(
-      child: SafeArea(
-        child: Center(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text("Scoundrel", style: TextStyle(fontSize: 90)),
-              SizedBox(height: 24),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.of(context)
-                      .push(
-                        MaterialPageRoute(
-                          builder: (context) => const GameScreen(),
-                        ),
-                      )
-                      .then((_) => loadHighScore());
-                },
-                child: Padding(
-                  padding: const EdgeInsets.all(16),
-                  child: Text("Explore!", style: TextStyle(fontSize: 36)),
+      child: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("assets/background.jpg"),
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: SafeArea(
+          child: Center(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  "Scoundrel",
+                  style: TextStyle(fontSize: 90, color: Colors.white),
                 ),
-              ),
-              SizedBox(height: 24),
-              Text("High score: $highScore", style: TextStyle(fontSize: 24)),
-            ],
+                SizedBox(height: 24),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.of(context)
+                        .push(
+                          MaterialPageRoute(
+                            builder: (context) => const GameScreen(),
+                          ),
+                        )
+                        .then((_) => loadHighScore());
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.all(16),
+                    child: Text("Explore!", style: TextStyle(fontSize: 36)),
+                  ),
+                ),
+                SizedBox(height: 24),
+                Text(
+                  "High score: $highScore",
+                  style: TextStyle(fontSize: 24, color: Colors.white),
+                ),
+              ],
+            ),
           ),
         ),
       ),

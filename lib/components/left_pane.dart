@@ -40,7 +40,7 @@ class LeftPane extends StatelessWidget {
           FittedBox(
             child: Text(
               "Score:\n$currentScore / $maxScore",
-              style: TextStyle(fontSize: 30),
+              style: TextStyle(fontSize: 30, color: Colors.white),
               textAlign: TextAlign.center,
             ),
           ),
