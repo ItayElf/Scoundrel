@@ -31,8 +31,11 @@ class _GameScreenState extends State<GameScreen> {
   void initState() {
     super.initState();
     deckCards.shuffle();
-    roomCards = deckCards.sublist(0, 4);
-    deckCards.removeRange(0, 4);
+
+    final drawSize = min(deckCards.length, 4);
+
+    roomCards = deckCards.sublist(0, drawSize);
+    deckCards.removeRange(0, drawSize);
     maxScore = getMaxScore();
   }
 
@@ -101,8 +104,9 @@ class _GameScreenState extends State<GameScreen> {
 
   List<PlayingCard> drawNewRoom() {
     // setState is called by caller
-    final drawn = deckCards.sublist(0, 3);
-    deckCards.removeRange(0, 3);
+    final drawSize = min(deckCards.length, 3);
+    final drawn = deckCards.sublist(0, drawSize);
+    deckCards.removeRange(0, drawSize);
     return drawn;
   }
 
@@ -111,8 +115,14 @@ class _GameScreenState extends State<GameScreen> {
 
   bool _isMonster(PlayingCard c) => [Suit.clubs, Suit.spades].contains(c.suit);
 
-  int getMaxScore() =>
-      getBaseSet().where(_isMonster).map(getCardValue).reduce((a, b) => a + b);
+  int getMaxScore() {
+    final enemies = getBaseSet().where(_isMonster).map(getCardValue);
+    if (enemies.isEmpty) {
+      return 0;
+    }
+
+    return enemies.reduce((a, b) => a + b);
+  }
 
   int getCurrentScore() {
     List<PlayingCard> currentMonsters = [
@@ -122,6 +132,10 @@ class _GameScreenState extends State<GameScreen> {
           .cast<PlayingCard>()
           .where(_isMonster),
     ];
+
+    if (currentMonsters.isEmpty) {
+      return maxScore;
+    }
 
     final leftScore = currentMonsters.map(getCardValue).reduce((a, b) => a + b);
 

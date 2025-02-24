@@ -21,19 +21,19 @@ const _nobilityValues = [
 ];
 
 List<PlayingCard> getBaseSet() {
-  List<PlayingCard> cards = [];
+  List<PlayingCard> cards = [PlayingCard(Suit.spades, CardValue.nine)];
 
-  for (Suit suit in STANDARD_SUITS) {
-    for (CardValue v in _numbersValues) {
-      cards.add(PlayingCard(suit, v));
-    }
-  }
-
-  for (Suit suit in [Suit.clubs, Suit.spades]) {
+  for (Suit suit in [Suit.diamonds, Suit.hearts]) {
     for (CardValue v in _nobilityValues) {
       cards.add(PlayingCard(suit, v));
     }
   }
+
+  // for (Suit suit in [Suit.clubs, Suit.spades]) {
+  //   for (CardValue v in _nobilityValues) {
+  //     cards.add(PlayingCard(suit, v));
+  //   }
+  // }
 
   return cards;
 }

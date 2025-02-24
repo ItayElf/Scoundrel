@@ -90,10 +90,10 @@ final defaultCardStyle = PlayingCardViewStyle(
             ),
         CardValue.king:
             (context) =>
-                Image.asset("assets/monsters/demon.jpg", fit: BoxFit.cover),
+                Image.asset("assets/monsters/demon.webp", fit: BoxFit.cover),
         CardValue.ace:
             (context) => Image.asset(
-              "assets/monsters/death lord.jpg",
+              "assets/monsters/death lord.webp",
               fit: BoxFit.cover,
             ),
       },
