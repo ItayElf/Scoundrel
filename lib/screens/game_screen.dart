@@ -138,6 +138,8 @@ class _GameScreenState extends State<GameScreen> {
         ...deckCards,
         ...roomCards.where((c) => c != null).cast<PlayingCard>(),
       ];
+      if (leftCards.isEmpty) return maxScore;
+
       return maxScore + leftCards.map(getCardValue).reduce((a, b) => a + b);
     }
 
