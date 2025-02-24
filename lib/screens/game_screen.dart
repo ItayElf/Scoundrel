@@ -157,7 +157,7 @@ class _GameScreenState extends State<GameScreen> {
     });
   }
 
-  void showDialogOnGameOver(BuildContext context) {
+  void showDialogOnGameOver(BuildContext context, bool didWin) {
     final score = getCurrentScore();
 
     onPressed() {
@@ -173,7 +173,7 @@ class _GameScreenState extends State<GameScreen> {
       context: context,
       builder:
           (context) => AlertDialog(
-            title: Text("You Died!"),
+            title: Text(didWin ? "You've Beaten the Dungeon!" : "You Died!"),
             content: Text("Score: $score", style: TextStyle(fontSize: 20)),
             actions: [
               TextButton(
@@ -189,7 +189,11 @@ class _GameScreenState extends State<GameScreen> {
   Widget build(BuildContext context) {
     if (currentHealth == 0) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
-        showDialogOnGameOver(context);
+        showDialogOnGameOver(context, false);
+      });
+    } else if (getCurrentScore() > maxScore) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        showDialogOnGameOver(context, true);
       });
     }
 
