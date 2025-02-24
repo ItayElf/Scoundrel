@@ -79,21 +79,19 @@ class _GameScreenState extends State<GameScreen> {
 
   void onMonsterPlay(PlayingCard card) {
     if (weapon == null || !useWeapon) {
-      currentHealth = max(0, currentHealth - getCardValue(card));
+      currentHealth = currentHealth - getCardValue(card);
       return;
     }
 
     final minSlainMonster =
         slainMonsters.isEmpty ? 100 : getCardValue(slainMonsters.last);
     if (minSlainMonster <= getCardValue(card)) {
-      currentHealth = max(0, currentHealth - getCardValue(card));
+      currentHealth = currentHealth - getCardValue(card);
       return;
     }
 
-    currentHealth = max(
-      0,
-      currentHealth - max(getCardValue(card) - getCardValue(weapon!), 0),
-    );
+    currentHealth =
+        currentHealth - max(getCardValue(card) - getCardValue(weapon!), 0);
     slainMonsters.add(PlayingCard(card.suit, card.value));
   }
 
@@ -189,7 +187,7 @@ class _GameScreenState extends State<GameScreen> {
 
   @override
   Widget build(BuildContext context) {
-    if (currentHealth == 0) {
+    if (currentHealth <= 0) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
         showDialogOnGameOver(context, false);
       });
