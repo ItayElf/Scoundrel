@@ -134,7 +134,11 @@ class _GameScreenState extends State<GameScreen> {
     ];
 
     if (currentMonsters.isEmpty) {
-      return maxScore;
+      final leftCards = [
+        ...deckCards,
+        ...roomCards.where((c) => c != null).cast<PlayingCard>(),
+      ];
+      return maxScore + leftCards.map(getCardValue).reduce((a, b) => a + b);
     }
 
     final leftScore = currentMonsters.map(getCardValue).reduce((a, b) => a + b);
