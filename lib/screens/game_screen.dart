@@ -191,7 +191,7 @@ class _GameScreenState extends State<GameScreen> {
       WidgetsBinding.instance.addPostFrameCallback((_) {
         showDialogOnGameOver(context, false);
       });
-    } else if (getCurrentScore() > maxScore) {
+    } else if (getCurrentScore() >= maxScore) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
         showDialogOnGameOver(context, true);
       });
